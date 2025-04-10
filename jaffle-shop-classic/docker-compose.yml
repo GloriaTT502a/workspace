@@ -1,0 +1,36 @@
+version: '3.8'
+services:
+  #airflow:
+  #  image: apache/airflow:latest
+  #  container_name: airflow
+  #  ports:
+  #    - "8080:8080"
+  #  networks:
+  #    - my-network
+
+  postgres:
+    image: postgres:13
+    container_name: dbt_postgres
+    environment:
+      - POSTGRES_USER=dbt_postgres
+      - POSTGRES_PASSWORD=dbt_postgres_pass
+      - POSTGRES_DB=dbt_db
+    ports:
+      - "5432:5432"
+    networks:
+      - my-network
+
+  pgadmin:
+    image: dpage/pgadmin4:latest
+    container_name: pgadmin
+    environment:
+      - PGADMIN_DEFAULT_EMAIL=admin@admin.com
+      - PGADMIN_DEFAULT_PASSWORD=admin
+    ports:
+      - "8081:80"
+    networks:
+      - my-network
+
+networks:
+  my-network:
+    driver: bridge
