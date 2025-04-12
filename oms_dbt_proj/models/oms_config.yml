@@ -19,9 +19,10 @@ models:
           - not_null 
 
       - name: StatusCD 
+        description: "{{ doc('StatusCD') }}"
         tests: 
           - accepted_values: 
-              values: ['01', '02', '03'] 
+              values: ["Shipped","Pending","Delivered","Processing","Cancelled"] 
 
   - name: orderitems_stg 
     columns: 

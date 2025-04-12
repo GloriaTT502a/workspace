@@ -13,4 +13,4 @@ SELECT
     END AS STATUSDESC, 
     UPDATED_AT 
 FROM 
-    "L1_LANDING".ORDERS 
+    {{ source('landing', 'ordr') }} 

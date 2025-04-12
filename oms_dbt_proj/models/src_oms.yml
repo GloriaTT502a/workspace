@@ -2,10 +2,18 @@ sources:
   - name: landing 
     database: sleekmart_oms 
     schema: L1_LANDING
+    freshness:
+      warn_after: {count: 1, period: day}
+      error_after: {count: 3, period: day}
+    loaded_at_field: Updated_at 
+
     tables:
       - name: cust 
+        description: The customers table from order management system(OMS).      
         identifier: customers 
       - name: ordr 
+        description: The orders table from order management system(OMS).
         identifier: orders 
       - name: ordritms 
+        description: The orderitems table from order management system(OMS).      
         identifier: orderitems 
