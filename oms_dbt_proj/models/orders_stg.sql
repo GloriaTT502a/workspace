@@ -1,3 +1,8 @@
+{{
+    config( materialized='incremental' )
+
+}}
+
 SELECT 
     ORDERID, 
     ORDERDATE, 
@@ -14,3 +19,7 @@ SELECT
     UPDATED_AT 
 FROM 
     {{ source('landing', 'ordr') }} 
+
+{% if is_incremental() %} 
+where updated_at >= (select max(dbt_updated_at) from {{ this }})
+{% endif %}

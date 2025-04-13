@@ -17,3 +17,6 @@ sources:
       - name: ordritms 
         description: The orderitems table from order management system(OMS).      
         identifier: orderitems 
+      - name: sales_us
+        description: The sales in us
+        identifier: sales_us 
