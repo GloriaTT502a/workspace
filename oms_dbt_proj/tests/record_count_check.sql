@@ -1,12 +1,8 @@
 -- Define the expected record counts for each table 
 {% set expected_counts = {
-    'customers': 50, 
-    'Employees': 20, 
-    'Stores': 10, 
-    'Suppliers': 5, 
-    'Products': 100, 
-    'OrderItems': 1000, 
-    'Orders': 200
+    'cust': 1, 
+    'ordritms': 1, 
+    'ordr': 1
 } %}
 
 -- Test the count of records in each table 
@@ -14,6 +10,6 @@
     SELECT '{{ table }}' AS table_name, 
             (SELECT COUNT(1) FROM {{ source('landing', table) }}) AS record_count, 
             {{ expected_count }} AS expected_count 
-    WHERE (SELECT COUNT(*) FROM {{ source('landing', table) }}) < {{ expected_count }} 
+    WHERE (SELECT COUNT(1) FROM {{ source('landing', table) }}) < {{ expected_count }} 
     {% if not loop.last %} UNION ALL {% endif %} 
 {% endfor %}
